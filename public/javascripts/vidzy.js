@@ -3,8 +3,11 @@ var app = angular.module('Vidzy', ['ngResource', 'ngRoute']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'partials/home.html'
+        })
+        .when('/videos', {
+            templateUrl: 'partials/videos.html',
+            controller: 'ListCtrl'
         })
         .when('/add-video', {
             templateUrl: 'partials/video-form.html',
@@ -23,7 +26,15 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
 }]);
 
-app.controller('HomeCtrl', ['$scope', '$resource',
+app.controller('HeaderCtrl', ['$scope', '$location', 
+function($scope, $location) {
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+}
+]);
+
+app.controller('ListCtrl', ['$scope', '$resource',
     function ($scope, $resource) {
         var Videos = $resource('/api/videos');
         Videos.query(function (videos) {
@@ -37,7 +48,7 @@ app.controller('AddVideoCtrl', ['$scope', '$resource', '$location',
         $scope.save = function () {
             var Videos = $resource('/api/videos');
             Videos.save($scope.video, function () {
-                $location.path('/');
+                $location.path('/videos');
             });
         }
     }
@@ -55,7 +66,7 @@ app.controller('EditVideoCtrl', ['$scope', '$resource', '$location', '$routePara
 
         $scope.save = function () {
             Videos.update($scope.video, function () {
-                $location.path('/');
+                $location.path('/videos');
             })
         }
     }
@@ -71,7 +82,7 @@ app.controller('DeleteVideoCtrl', ['$scope', '$resource', '$location', '$routePa
 
         $scope.delete = function () {
             Videos.delete({ id: $routeParams.id }, function (video) {
-                $location.path('/');
+                $location.path('/videos');
             });
         }
     }]
