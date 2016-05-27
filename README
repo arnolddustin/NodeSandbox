@@ -1,3 +1,5 @@
-My Project
+NodeSandbox
 
-This is a sample project
+Random proof of concept, tutorial, and demo things.
+
+Containes a node server that serves up an Angular/Express front-end from mongodb.
