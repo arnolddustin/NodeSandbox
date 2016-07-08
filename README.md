@@ -12,5 +12,5 @@
 ### Build with Gulp
 
 - `gulp build`
-- change to build folder
-- `npm start`
+
+This will create a `build` folder containing a client and server folder.  The client javascript and css are consolidated and minified and ready to deploy.
