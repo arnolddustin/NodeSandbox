@@ -1,0 +1,21 @@
+<html ng-app="app">
+
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <script src="bower/angular/angular.js" ></script>
+    <script src="bower/angular-resource/angular-resource.js" ></script>
+    <script src="bower/angular-route/angular-route.js"></script>
+    <script src="app.js" ></script>
+    <link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/bootswatch.css" />
+</head>
+
+<body>
+    <div ng-include src="'partials/menu.html'" ></div>
+    <div class="container">
+        <div ng-view class="ng-scope"></div>
+    </div>
+</body>
+
+</html>

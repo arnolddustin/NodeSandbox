@@ -1,0 +1,23 @@
+{
+  "name": "node-sandbox",
+  "description": "Sample application using node",
+  "main": "",
+  "authors": [
+    "Dustin Arnold <dustin.arnold@compassphs.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/arnolddustin/NodeSandbox",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "angular-resource": "^1.5.7",
+    "bootstrap": "^3.3.6"
+  }
+}
