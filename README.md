@@ -7,9 +7,10 @@
 - clone repo
 - `npm install`
 - `bower install`
-- `node /src/server/index.js`
+- `npm start`
 
 ### Build with Gulp
 
 - `gulp build`
-- `node index.js` from /build folder
+- change to build folder
+- `npm start`
