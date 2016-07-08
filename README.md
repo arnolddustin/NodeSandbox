@@ -1,15 +1,16 @@
 # NodeSandbox
 
-### Random proof of concept, tutorial, and demo things.
+##### Random proof of concept, tutorial, and demo things.
+======
 
-#### Containes a node server running Hapi that serves up an Angular front-end from mongodb.
+### Getting Started
 
 - clone repo
 - npm install
 - bower install
 - node /src/server/index.js
 
-### Building
+### Build with Gulp
 
 - gulp build
 - run index.js from /build folder
