@@ -1,0 +1,29 @@
+<html ng-app="app">
+
+<head>
+    <title>{{title}}</title>
+
+    <!-- at:less >> css/site.css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/bootswatch.css" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <!-- at:end -->
+
+</head>
+
+<body>
+    <div ng-include src="'partials/menu.html'"></div>
+    <div class="container">
+        <div ng-view class="ng-scope"></div>
+    </div>
+
+    <!-- at:js >> js/site.js -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/app.js"></script>
+    <!-- at:end -->
+
+</body>
+
+</html>
