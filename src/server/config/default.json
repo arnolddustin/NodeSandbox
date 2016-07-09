@@ -1,0 +1,7 @@
+{
+    "settings": {
+        "mongo": {
+            "connectionstring": "localhost:27017/vidzy"
+        }
+    }
+}

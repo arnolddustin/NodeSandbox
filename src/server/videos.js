@@ -1,7 +1,10 @@
 'use strict'
+var config = require('config');
+var monk = require('monk');
 
 var monk = require('monk');
-var db = monk('192.168.99.100:32769/vidzy');
+// var db = monk('192.168.99.100:32769/vidzy');
+var db = monk(config.settings.mongo.connectionstring);
 
 let getall = {
     method: 'GET',
