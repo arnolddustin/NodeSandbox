@@ -7,9 +7,10 @@
 - clone repo
 - `npm install`
 - `bower install`
-- `node /src/server/index.js`
+- `npm start`
 
 ### Build with Gulp
 
 - `gulp build`
-- `node index.js` from /build folder
+
+This will create a `build` folder containing a client and server folder.  The client javascript and css are consolidated and minified and ready to deploy.
