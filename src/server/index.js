@@ -33,4 +33,4 @@ server.register(require('inert'), (err) => {
   });
 });
 
-require('./videos').registerApi(server);
+require('./widgets').registerApi(server);

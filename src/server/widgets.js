@@ -3,74 +3,73 @@ var config = require('config');
 var monk = require('monk');
 
 var monk = require('monk');
-// var db = monk('192.168.99.100:32769/vidzy');
-var db = monk(config.settings.mongo.connectionstring);
+var db = monk(config.settings.mongo.connections[0].connectionstring);
 
 let getall = {
     method: 'GET',
-    path: '/api/videos',
+    path: '/api/widgets',
     handler: function (req, res) {
-        var collection = db.get('videos');
-        collection.find({}, function (err, videos) {
+        var collection = db.get('widgets');
+        collection.find({}, function (err, widgets) {
             if (err) throw err;
-            res(videos);
+            res(widgets);
         });
     }
 }
 
 let post = {
     method: 'POST',
-    path: '/api/videos',
+    path: '/api/widgets',
     handler: function (req, res) {
-        var collection = db.get('videos');
+        var collection = db.get('widgets');
         collection.insert({
             title: req.payload.title,
             description: req.payload.description
-        }, function (err, video) {
+        }, function (err, widget) {
             if (err) throw err;
-            res(video);
+            res(widget);
         })
     }
 }
 
 let get = {
     method: 'GET',
-    path: '/api/videos/{id}',
+    path: '/api/widgets/{id}',
     handler: function (req, res) {
-        var collection = db.get('videos');
-        collection.findOne({ _id: req.params.id }, function (err, video) {
+        var collection = db.get('widgets');
+        collection.findOne({ _id: req.params.id }, function (err, widget) {
             if (err) throw err;
-            res(video);
+            res(widget);
         });
     }
 }
 
 let put = {
     method: 'PUT',
-    path: '/api/videos/{id}',
+    path: '/api/widgets/{id}',
     handler: function (req, res) {
-        var collection = db.get('videos');
+        var collection = db.get('widgets');
         collection.update({
             _id: req.params.id
         },
             {
                 title: req.payload.title,
                 description: req.payload.description
-            }, function (err, video) {
+            }, function (err, widget) {
                 if (err) throw err;
-                res(video);
+                res(widget);
             });
     }
 }
 
 let destroy = {
     method: 'DELETE',
-    path: '/api/videos/{id}',
+    path: '/api/widgets/{id}',
     handler: function (req, res) {
-        var collection = db.get('videos');
-        collection.remove({ _id: req.params.id }, function (err, video) {
+        var collection = db.get('widgets');
+        collection.remove({ _id: req.params.id }, function (err, widget) {
             if (err) throw err;
-            res(video);
+            res(widget);
         });
     }
 };
