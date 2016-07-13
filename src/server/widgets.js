@@ -1,19 +1,12 @@
 'use strict'
 var config = require('config');
-var monk = require('monk');
-
-var monk = require('monk');
-var db = monk(config.settings.mongo.connections[0].connectionstring);
+var widgets = require('../modules/widgets-mongo');
 
 let getall = {
     method: 'GET',
     path: '/api/widgets',
     handler: function (req, res) {
-        var collection = db.get('widgets');
-        collection.find({}, function (err, widgets) {
-            if (err) throw err;
-            res(widgets);
-        });
+        widgets.getall(res);
     }
 }
 
@@ -21,14 +14,7 @@ let post = {
     method: 'POST',
     path: '/api/widgets',
     handler: function (req, res) {
-        var collection = db.get('widgets');
-        collection.insert({
-            title: req.payload.title,
-            description: req.payload.description
-        }, function (err, widget) {
-            if (err) throw err;
-            res(widget);
-        })
+        widgets.insert(req.payload, res);
     }
 }
 
@@ -36,11 +22,7 @@ let get = {
     method: 'GET',
     path: '/api/widgets/{id}',
     handler: function (req, res) {
-        var collection = db.get('widgets');
-        collection.findOne({ _id: req.params.id }, function (err, widget) {
-            if (err) throw err;
-            res(widget);
-        });
+        widgets.get(req.params.id, res);
     }
 }
 
@@ -48,17 +30,8 @@ let put = {
     method: 'PUT',
     path: '/api/widgets/{id}',
     handler: function (req, res) {
-        var collection = db.get('widgets');
-        collection.update({
-            _id: req.params.id
-        },
-            {
-                title: req.payload.title,
-                description: req.payload.description
-            }, function (err, widget) {
-                if (err) throw err;
-                res(widget);
-            });
+        req.payload.id = req.params.id;
+        widgets.update(req.payload, res);
     }
 }
 
@@ -66,11 +39,7 @@ let destroy = {
     method: 'DELETE',
     path: '/api/widgets/{id}',
     handler: function (req, res) {
-        var collection = db.get('widgets');
-        collection.remove({ _id: req.params.id }, function (err, widget) {
-            if (err) throw err;
-            res(widget);
-        });
+        widgets.destroy(req.params.id, res);
     }
 };
 
