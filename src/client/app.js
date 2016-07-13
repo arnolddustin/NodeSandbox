@@ -5,21 +5,21 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/', {
             templateUrl: 'partials/home.html'
         })
-        .when('/videos', {
-            templateUrl: 'partials/videos.html',
+        .when('/widgets', {
+            templateUrl: 'partials/widgets.html',
             controller: 'ListCtrl'
         })
-        .when('/add-video', {
-            templateUrl: 'partials/video-form.html',
-            controller: 'AddVideoCtrl'
+        .when('/add-widget', {
+            templateUrl: 'partials/widget-form.html',
+            controller: 'AddWidgetCtrl'
         })
-        .when('/video/:id', {
-            templateUrl: 'partials/video-form.html',
-            controller: 'EditVideoCtrl'
+        .when('/widget/:id', {
+            templateUrl: 'partials/widget-form.html',
+            controller: 'EditWidgetCtrl'
         })
-        .when('/video/delete/:id', {
-            templateUrl: 'partials/video-delete.html',
-            controller: 'DeleteVideoCtrl'
+        .when('/widget/delete/:id', {
+            templateUrl: 'partials/widget-delete.html',
+            controller: 'DeleteWidgetCtrl'
         })
         .otherwise({
             redirectTo: '/'
@@ -36,53 +36,53 @@ function($scope, $location) {
 
 app.controller('ListCtrl', ['$scope', '$resource',
     function ($scope, $resource) {
-        var Videos = $resource('/api/videos');
-        Videos.query(function (videos) {
-            $scope.videos = videos;
+        var widgets = $resource('/api/widgets');
+        widgets.query(function (widgets) {
+            $scope.widgets = widgets;
         });
     }
 ]);
 
-app.controller('AddVideoCtrl', ['$scope', '$resource', '$location',
+app.controller('AddWidgetCtrl', ['$scope', '$resource', '$location',
     function ($scope, $resource, $location) {
         $scope.save = function () {
-            var Videos = $resource('/api/videos');
-            Videos.save($scope.video, function () {
-                $location.path('/videos');
+            var widgets = $resource('/api/widgets');
+            widgets.save($scope.widget, function () {
+                $location.path('/widgets');
             });
         }
     }
 ]);
 
-app.controller('EditVideoCtrl', ['$scope', '$resource', '$location', '$routeParams',
+app.controller('EditWidgetCtrl', ['$scope', '$resource', '$location', '$routeParams',
     function ($scope, $resource, $location, $routeParams) {
-        var Videos = $resource('/api/videos/:id', { id: $routeParams.id }, {
+        var widgets = $resource('/api/widgets/:id', { id: $routeParams.id }, {
             update: { method: 'PUT' }
         });
 
-        Videos.get({ id: $routeParams.id }, function (video) {
-            $scope.video = video;
+        widgets.get({ id: $routeParams.id }, function (widget) {
+            $scope.widget = widget;
         });
 
         $scope.save = function () {
-            Videos.update($scope.video, function () {
-                $location.path('/videos');
+            widgets.update($scope.widget, function () {
+                $location.path('/widgets');
             })
         }
     }
 ]);
 
-app.controller('DeleteVideoCtrl', ['$scope', '$resource', '$location', '$routeParams',
+app.controller('DeleteWidgetCtrl', ['$scope', '$resource', '$location', '$routeParams',
     function ($scope, $resource, $location, $routeParams) {
-        var Videos = $resource('/api/videos/:id');
+        var widgets = $resource('/api/widgets/:id');
 
-        Videos.get({ id: $routeParams.id }, function (video) {
-            $scope.video = video;
+        widgets.get({ id: $routeParams.id }, function (widget) {
+            $scope.widget = widget;
         })
 
         $scope.delete = function () {
-            Videos.delete({ id: $routeParams.id }, function (video) {
-                $location.path('/videos');
+            widgets.delete({ id: $routeParams.id }, function (widget) {
+                $location.path('/widgets');
             });
         }
     }]

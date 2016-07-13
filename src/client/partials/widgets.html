@@ -1,0 +1,14 @@
+<h1>Widgets</h1>
+
+<p>
+    <a href="/#/add-widget">Add a widget</a>
+</p>
+
+<ul>
+    <li ng-repeat="widget in widgets">
+        <a href="/#/widget/{{widget._id}}">{{widget.title}}</a>
+        <a href="/#/widget/delete/{{widget._id}}">
+            <i class="glyphicon glyphicon-remove"></i>
+        </a>
+    </li>
+</ul>

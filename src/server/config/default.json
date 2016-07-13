@@ -1,7 +1,14 @@
 {
     "settings": {
         "mongo": {
-            "connectionstring": "localhost:27017/vidzy"
+            "connections" : [
+                {
+                    "connectionstring" : "192.168.99.100:32774/widgets"
+                },
+                {
+                    "connectionstring" : "localhost:27017/widgets"
+                }
+            ]
         }
     }
 }
