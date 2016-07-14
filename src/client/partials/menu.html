@@ -16,7 +16,8 @@
                 <li ng-class="{ active: isActive('/widgets')}"><a href="#/widgets">Widgets</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                <li ng-if="userProfile"><a href="" title="signed in as {{userProfile.name}}" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                <li ng-class="{ active: isActive('/login')}" ng-if="!userProfile"><a href="#/login" title="not signed in"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
             </ul>
         </div>
     </div>

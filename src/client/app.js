@@ -5,32 +5,81 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/', {
             templateUrl: 'partials/home.html'
         })
+        .when('/login', {
+            templateUrl: 'partials/login.html',
+            controller: 'LoginCtrl'
+        })
         .when('/widgets', {
             templateUrl: 'partials/widgets.html',
-            controller: 'ListCtrl'
+            controller: 'ListCtrl',
+            resolve: {
+                factory: checkRouting
+            }
         })
         .when('/add-widget', {
             templateUrl: 'partials/widget-form.html',
-            controller: 'AddWidgetCtrl'
+            controller: 'AddWidgetCtrl',
+            resolve: {
+                factory: checkRouting
+            }
         })
         .when('/widget/:id', {
             templateUrl: 'partials/widget-form.html',
-            controller: 'EditWidgetCtrl'
+            controller: 'EditWidgetCtrl',
+            resolve: {
+                factory: checkRouting
+            }
         })
         .when('/widget/delete/:id', {
             templateUrl: 'partials/widget-delete.html',
-            controller: 'DeleteWidgetCtrl'
+            controller: 'DeleteWidgetCtrl',
+            resolve: {
+                factory: checkRouting
+            }
         })
         .otherwise({
             redirectTo: '/'
         });
 }]);
 
-app.controller('HeaderCtrl', ['$scope', '$location',
-    function ($scope, $location) {
+var checkRouting = function ($q, $rootScope, $location, $http) {
+    if ($rootScope.userProfile) {
+        return true;
+    } else {
+        $location.path('/login');
+        // var deferred = $q.defer();
+        // $http.post("/api/profile/load", { userToken: "blah" })
+        //     .success(function (response) {
+        //         $rootScope.userProfile = response.userProfile;
+        //         deferred.resolve(true);
+        //     })
+        //     .error(function () {
+        //         deferred.reject();
+        //         $location.path("/");
+        //     });
+        // return deferred.promise;
+    }
+};
+
+app.controller('LoginCtrl', ['$scope', '$rootScope', '$location',
+    function ($scope, $rootScope, $location) {
+        $scope.login = function () {
+            $rootScope.userProfile = { username: $scope.username, name: $scope.username };
+            $location.path('/');
+        }
+    }
+]);
+
+app.controller('HeaderCtrl', ['$scope', '$rootScope', '$location',
+    function ($scope, $rootScope, $location) {
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
+
+        $scope.logout = function () {
+            delete $rootScope.userProfile;
+            $location.path('/');
+        }
     }
 ]);
 

@@ -34,3 +34,4 @@ server.register(require('inert'), (err) => {
 });
 
 require('./api/widgets').registerApi(server);
+require('./api/profiles').registerApi(server);
