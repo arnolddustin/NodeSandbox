@@ -14,3 +14,8 @@
 - `gulp build`
 
 This will create a `build` folder containing a client and server folder.
+
+### Features
+- widget management ui
+- widget api
+- widget back-ends for mongo and elastic search
