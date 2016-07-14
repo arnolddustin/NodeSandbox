@@ -36,10 +36,18 @@ app.controller('HeaderCtrl', ['$scope', '$location',
 
 app.controller('ListCtrl', ['$scope', '$http', '$resource',
     function ($scope, $http, $resource) {
-        $http.get('/api/widgets')
-            .then(function (response) {
-                $scope.widgets = response.data;
-            });
+        $scope.widgets = $scope.widgets || [];
+
+        $scope.refresh = function () {
+            $http.get('/api/widgets')
+                .then(function (response) {
+                    $scope.widgets = response.data;
+                });
+        }
+
+        if ($scope.widgets.length == 0) {
+            $scope.refresh();
+        }
         // var widgets = $resource('/api/widgets');
         // widgets.query(function (widgets) {
         //     $scope.widgets = widgets;
