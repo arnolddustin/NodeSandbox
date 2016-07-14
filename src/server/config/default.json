@@ -1,14 +1,10 @@
 {
     "settings": {
         "mongo": {
-            "connections" : [
-                {
-                    "connectionstring" : "192.168.99.100:32774/widgets"
-                },
-                {
-                    "connectionstring" : "localhost:27017/widgets"
-                }
-            ]
+            "connectionstring": "192.168.99.100:27017/widgets"
+        },
+        "elasticsearch": {
+            "host" : "http://192.168.99.100:9200"
         }
     }
 }

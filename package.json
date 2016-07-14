@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "config": "^1.21.0",
+    "elasticsearch": "^11.0.1",
     "hapi": "^13.5.0",
     "inert": "^4.0.1",
     "mongodb": "^2.1.18",

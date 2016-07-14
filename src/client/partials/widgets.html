@@ -1,11 +1,12 @@
 <h1>Widgets</h1>
 
-<p>
-    <a href="/#/add-widget">Add a widget</a>
-</p>
+<ul class="nav nav-pills">
+    <li><a href="/#/add-widget"><span class="glyphicon glyphicon-plus-sign"></span> Create New</a></li>
+    <li><a href="" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span> Refresh List</a></li>
+</ul>
 
 <ul>
-    <li ng-repeat="widget in widgets">
+    <li ng-init="loadwidgets()" ng-repeat="widget in widgets">
         <a href="/#/widget/{{widget._id}}">{{widget.title}}</a>
         <a href="/#/widget/delete/{{widget._id}}">
             <i class="glyphicon glyphicon-remove"></i>
