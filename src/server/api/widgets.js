@@ -1,6 +1,6 @@
 'use strict'
 var config = require('config');
-var widgets = require('../modules/widgets-mongo');
+var widgets = require('../../modules/widgets-mongo');
 
 let getall = {
     method: 'GET',
