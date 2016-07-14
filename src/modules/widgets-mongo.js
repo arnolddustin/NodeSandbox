@@ -1,7 +1,7 @@
 'use strict'
 var config = require('config');
 var monk = require('monk');
-var db = monk(config.settings.mongo.connections[0].connectionstring);
+var db = monk(config.settings.mongo.connectionstring);
 
 var getall = function (callback) {
     var collection = db.get('widgets');
