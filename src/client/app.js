@@ -26,20 +26,24 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
 }]);
 
-app.controller('HeaderCtrl', ['$scope', '$location', 
-function($scope, $location) {
-    $scope.isActive = function (viewLocation) { 
-        return viewLocation === $location.path();
-    };
-}
+app.controller('HeaderCtrl', ['$scope', '$location',
+    function ($scope, $location) {
+        $scope.isActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
+    }
 ]);
 
-app.controller('ListCtrl', ['$scope', '$resource',
-    function ($scope, $resource) {
-        var widgets = $resource('/api/widgets');
-        widgets.query(function (widgets) {
-            $scope.widgets = widgets;
-        });
+app.controller('ListCtrl', ['$scope', '$http', '$resource',
+    function ($scope, $http, $resource) {
+        $http.get('/api/widgets')
+            .then(function (response) {
+                $scope.widgets = response.data;
+            });
+        // var widgets = $resource('/api/widgets');
+        // widgets.query(function (widgets) {
+        //     $scope.widgets = widgets;
+        // });
     }
 ]);
 
