@@ -1,4 +1,5 @@
 'use strict';
+var config = require('config');
 
 let Hapi = require('hapi');
 
@@ -18,7 +19,7 @@ server.register(require('inert'), (err) => {
     path: '/{param*}',
     handler: {
       directory: {
-        path: 'src/client'
+        path: config.settings.clientpath
       }
     }
   });

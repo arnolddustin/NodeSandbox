@@ -29,9 +29,11 @@ gulp.task('copy', function(){
     gulp.src('./src/client/bower_components/bootstrap/fonts/*')
         .pipe(gulp.dest('./build/client/fonts'));
 
-    // gulp.src('./src/client/**/*')
-    //     .pipe(gulp.dest('./build/client/'));
+    gulp.src('./src/modules/*')
+        .pipe(gulp.dest('./build/modules'));
 
+    gulp.src('./src/server/config/*.json')
+        .pipe(gulp.dest('./build/config'))
 })
 
 gulp.task('install-client', function(){
